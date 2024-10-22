@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Account Details - {{ account.account_number }}{% endblock %}
+
+{% block content %}
+    <h1>Account Details</h1>
+    
+    <div class="account-details">
+        <h2>Account Number: {{ account.account_number }}</h2>
+        <p><strong>Account Holder: </strong>{{ account.account_holder }}</p>
+        <p><strong>Account Balance: </strong>${{ account.balance }}</p>
+        <p><strong>Account Type: </strong>{{ account.account_type }}</p>
+        <p><strong>Created On: </strong>{{ account.created_at.strftime('%Y-%m-%d') }}</p>
+        <p><strong>Status: </strong>{{ account.status }}</p>
+    </div>
+
+    <a href="{{ url_for('transactions.transaction_history', account_id=account.id) }}" class="btn btn-primary">View Transaction History</a>
+    <a href="{{ url_for('accounts.create_account', account_id=account.id) }}" class="btn btn-secondary">Edit Account</a>
+{% endblock %}

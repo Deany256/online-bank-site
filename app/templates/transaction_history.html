@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Transaction History{% endblock %}
+
+{% block content %}
+    <h2>Transaction History for {{ account.account_type }} Account</h2>
+    <ul>
+        {% for transaction in transactions %}
+            <li>{{ transaction.type }} of ${{ transaction.amount }} on {{ transaction.timestamp }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('accounts.account_details', account_id=account.id) }}">Back to Account</a>
+{% endblock %}
