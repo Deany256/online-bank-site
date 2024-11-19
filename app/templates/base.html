@@ -3,14 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Your Website{% endblock %}</title>
+    <title>{% block title %}Zenith Bank{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
 </head>
 <body>
+    <!-- Header/Banner -->
+    <header class="banner">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Zenith Bank Logo">
+            <span class="site-name">ZENITH</span>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('main.home') }}">Home</a>
+            
             <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('main.home') }}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('main.home') }}">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('main.home') }}">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('main.home') }}">Contact</a></li>
+
                 {% if current_user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
@@ -32,6 +47,7 @@
         </div>
     </nav>
 
+    <!-- Flash Messages -->
     <div class="container">
         {% with messages = get_flashed_messages() %}
             {% if messages %}
@@ -43,11 +59,14 @@
             {% endif %}
         {% endwith %}
         
+        <!-- Main Content Block -->
         {% block content %}{% endblock %}
     </div>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; {{ current_year }} Your Website</p>
+        <p>&copy; {{ current_year }} Zenith Bank. All rights reserved.</p>
+        <p>Privacy Policy | Terms of Service | Contact Us</p>
     </footer>
 </body>
 </html>
