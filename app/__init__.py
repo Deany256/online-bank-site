@@ -45,4 +45,6 @@ def create_app(config_name='development'):
     app.register_blueprint(accounts_bp, url_prefix='/accounts')
     app.register_blueprint(transactions_bp, url_prefix='/transactions')
 
+    print(app.config['SQLALCHEMY_DATABASE_URI'])
+
     return app
